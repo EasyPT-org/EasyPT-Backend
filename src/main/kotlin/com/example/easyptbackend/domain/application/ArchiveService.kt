@@ -13,11 +13,11 @@ class ArchiveService(
     private val archiveRepository: ArchiveRepository
 ) {
     @Transactional
-    fun registerArchive(registerArchiveRequest: RegisterArchiveRequest) {
+    fun registerArchive(user: String, gpt: String) {
         archiveRepository.save(
             ArchiveEntity(
-                user = registerArchiveRequest.user,
-                gpt = registerArchiveRequest.gpt
+                user = user,
+                gpt = gpt
             )
         )
     }
@@ -27,6 +27,7 @@ class ArchiveService(
         val archiveList = archiveRepository.findAll()
             .map {
                 ArchiveElement(
+                    id = it.id,
                     user = it.user,
                     gpt = it.gpt
                 )

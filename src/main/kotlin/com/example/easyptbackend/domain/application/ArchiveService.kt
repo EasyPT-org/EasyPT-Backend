@@ -7,6 +7,7 @@ import com.example.easyptbackend.domain.presentation.dto.FindAllArchiveResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Service
 class ArchiveService(
@@ -31,7 +32,7 @@ class ArchiveService(
                     id = it.id,
                     user = it.user,
                     gpt = it.gpt,
-                    createDate = it.createDate
+                    createDate = it.createDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"))
                 )
             }
 

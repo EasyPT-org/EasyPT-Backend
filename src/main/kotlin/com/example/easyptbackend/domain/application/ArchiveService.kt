@@ -7,6 +7,7 @@ import com.example.easyptbackend.domain.presentation.dto.FindAllArchiveResponse
 import com.example.easyptbackend.domain.presentation.dto.RegisterArchiveRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 
 @Service
 class ArchiveService(
@@ -17,7 +18,8 @@ class ArchiveService(
         archiveRepository.save(
             ArchiveEntity(
                 user = registerArchiveRequest.user,
-                gpt = registerArchiveRequest.gpt
+                gpt = registerArchiveRequest.gpt,
+                createDate = LocalDateTime.now()
             )
         )
     }
@@ -28,7 +30,8 @@ class ArchiveService(
             .map {
                 ArchiveElement(
                     user = it.user,
-                    gpt = it.gpt
+                    gpt = it.gpt,
+                    createDate = it.createDate
                 )
             }
 

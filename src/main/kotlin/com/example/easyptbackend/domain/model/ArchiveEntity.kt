@@ -1,6 +1,7 @@
 package com.example.easyptbackend.domain.model
 
 import org.jetbrains.annotations.NotNull
+import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -19,5 +20,8 @@ class ArchiveEntity(
     val user: String,
 
     @field:NotNull
-    val gpt: String
+    val gpt: String,
+
+    @field:NotNull
+    val createDate: LocalDateTime
 )

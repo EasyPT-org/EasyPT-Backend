@@ -7,6 +7,7 @@ data class FindAllArchiveResponse(
 )
 
 data class ArchiveElement(
+    val id: Int,
     val user: String,
     val gpt: String,
     val createDate: LocalDateTime

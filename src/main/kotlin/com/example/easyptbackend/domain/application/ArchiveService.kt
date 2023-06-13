@@ -4,7 +4,6 @@ import com.example.easyptbackend.domain.model.ArchiveEntity
 import com.example.easyptbackend.domain.model.repository.ArchiveRepository
 import com.example.easyptbackend.domain.presentation.dto.ArchiveElement
 import com.example.easyptbackend.domain.presentation.dto.FindAllArchiveResponse
-import com.example.easyptbackend.domain.presentation.dto.RegisterArchiveRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
@@ -14,11 +13,11 @@ class ArchiveService(
     private val archiveRepository: ArchiveRepository
 ) {
     @Transactional
-    fun registerArchive(registerArchiveRequest: RegisterArchiveRequest) {
+    fun registerArchive(user: String, gpt: String) {
         archiveRepository.save(
             ArchiveEntity(
-                user = registerArchiveRequest.user,
-                gpt = registerArchiveRequest.gpt,
+                user = user,
+                gpt = gpt,
                 createDate = LocalDateTime.now()
             )
         )
@@ -29,6 +28,7 @@ class ArchiveService(
         val archiveList = archiveRepository.findAll()
             .map {
                 ArchiveElement(
+                    id = it.id,
                     user = it.user,
                     gpt = it.gpt,
                     createDate = it.createDate
